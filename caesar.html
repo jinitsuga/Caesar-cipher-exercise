@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caesar Salad</title>
+  </head>
+  <body>
+    <script>
+      // let myEncryption = "Agu".charCodeAt(0) + 3;
+      //Deshacerme de los numeros
+      // La cuenta para dar vueltas al abc ( % de letra + shift / 25)
+      const caesar = function (word, shift) {
+        const arrayWord = word.split("");
+        const codedWord = arrayWord.map(function (letra) {
+          if (letra == " " || letra == "," || letra == "!" || letra == ".") {
+            return letra;
+          }
+          const mayusMin = 65;
+          const mayusMax = 90;
+
+          const minusMin = 97;
+          const minusMax = 122;
+
+          if (letra.charCodeAt(0) <= 90) {
+            codeLetra =
+              ((mayusMin + letra.charCodeAt(0) + shift) % 26) + mayusMin;
+            return String.fromCharCode(codeLetra);
+          } else if (
+            letra.charCodeAt(0) <= minusMax &&
+            letra.charCodeAt(0) >= minusMin
+          ) {
+            codeLetraMinu =
+              ((minusMin + letra.charCodeAt(0) + shift) % 26) + minusMin;
+            return String.fromCharCode(codeLetraMinu);
+          }
+        });
+        const joinedWord = codedWord.join("");
+        return joinedWord.toString();
+      };
+
+      module.exports = caesar;
+    </script>
+  </body>
+</html>
